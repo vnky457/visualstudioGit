@@ -1,0 +1,275 @@
+*************
+success job 
+
+Started by upstream project "360-core-ems-2018-deploy/target=dev" build number 3857
+originally caused by:
+ Started by upstream project "360-core-ems-2018-deploy" build number 3857
+ originally caused by:
+  Started by user BOT - Development Service, SpiderBld
+[EnvInject] - Loading node environment variables.
+[EnvInject] - Preparing an environment for the build.
+[EnvInject] - Keeping Jenkins system variables.
+[EnvInject] - Keeping Jenkins build variables.
+[EnvInject] - Evaluation the following Groovy script content: 
+import jenkins.model.*
+
+// Format build number and date
+artifactoryJobName = binding.getVariables().get('package_build_publish_job_name').trim()
+release_id = binding.getVariables().get('package_build_publish_job_number').split('=')[1]
+
+propertyFileName = "${artifactoryJobName}_${release_id}"
+
+println "propertyFileName = $propertyFileName"
+println "artifactoryJobName = $artifactoryJobName"
+
+rootJobName = propertyFileName.split('_')[0]
+println "rootJobName = $rootJobName"
+targetServerName = binding.getVariables().get('target_server_name')
+if (targetServerName) {
+  targetServerName = "/p:TargetServerNames=$targetServerName"
+}
+
+def adhocPkgName = binding.getVariables().get('adhoc_package_publish_job_name').toString()
+def adhocPkgNum = binding.getVariables().get('adhoc_package_publish_job_number').toString()
+def adhocArtifactoryId = ""
+
+if ((adhocPkgName != "") && (adhocPkgNum != "")) {
+  adhocArtifactoryId = "vertafore-:/.*@$adhocPkgName#$adhocPkgNum => .adhoc"
+}
+
+// Return mapping
+def map = [
+  artifactory_job_name: artifactoryJobName
+  , property_file_name : propertyFileName
+  , root_job_name: rootJobName
+  , target_server_name_cmd: targetServerName
+  , adhoc_artifactory: adhocArtifactoryId
+]
+return map
+
+propertyFileName = 360-core-ems-web_master
+artifactoryJobName = 360-core-ems-web
+rootJobName = 360-core-ems-web
+[EnvInject] - Injecting contributions.
+Building remotely on dev_deploy2 (deploy_slave) in workspace F:\jenkins_slave\workspace\abstract-bandit-deploy-v6
+
+Deleting project workspace... done
+
+Beginning to resolve Build Info published dependencies.
+Finished resolving Build Info published dependencies.
+Beginning to resolve Build Info build dependencies.
+Dependency on build [360-core-ems-web], number [376907 :: release=master], pattern [vertafore-:/.*] - [3] results found.
+Downloading 'http://botd-repo01.devop.vertafore.com/artifactory/vertafore-dev/360-core-ems-web/release=master/376907/360-core-ems-web_master-bandit.properties' ...
+Successfully downloaded 'http://botd-repo01.devop.vertafore.com/artifactory/vertafore-dev/360-core-ems-web/release=master/376907/360-core-ems-web_master-bandit.properties' to 'F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_master-bandit.properties'
+Downloading 'http://botd-repo01.devop.vertafore.com/artifactory/vertafore-dev/360-core-ems-web/release=master/376907/360-core-ems-web_21.2.4664_deploy.zip' ...
+Successfully downloaded 'http://botd-repo01.devop.vertafore.com/artifactory/vertafore-dev/360-core-ems-web/release=master/376907/360-core-ems-web_21.2.4664_deploy.zip' to 'F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_21.2.4664_deploy.zip'
+Downloading 'http://botd-repo01.devop.vertafore.com/artifactory/vertafore-dev/360-core-ems-web/release=master/376907/360-core-ems-web_21.2.4664.zip' ...
+Successfully downloaded 'http://botd-repo01.devop.vertafore.com/artifactory/vertafore-dev/360-core-ems-web/release=master/376907/360-core-ems-web_21.2.4664.zip' to 'F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_21.2.4664.zip'
+Finished resolving Build Info build dependencies.
+[abstract-bandit-deploy-v6] $ powershell.exe "& 'C:\Users\AGILET~1\AppData\Local\Temp\hudson2413202493830005464.ps1'"
+7z x F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_21.2.4664.zip
+
+7-Zip 19.00 (x64) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Scanning the drive for archives:
+1 file, 31831216 bytes (31 MiB)
+
+Extracting archive: F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_21.2.4664.zip
+--
+Path = F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_21.2.4664.zip
+Type = zip
+Physical Size = 31831216
+
+Everything is Ok
+
+Folders: 6
+Files: 22
+Size:       32310653
+Compressed: 31831216
+7z x F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_21.2.4664_deploy.zip
+
+7-Zip 19.00 (x64) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Scanning the drive for archives:
+1 file, 32485 bytes (32 KiB)
+
+Extracting archive: F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_21.2.4664_deploy.zip
+--
+Path = F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\.resolve\360-core-ems-web\release=master\376907\360-core-ems-web_21.2.4664_deploy.zip
+Type = zip
+Physical Size = 32485
+
+Everything is Ok
+
+Folders: 4
+Files: 33
+Size:       83009
+Compressed: 32485
+[EnvInject] - Injecting environment variables from a build step.
+[EnvInject] - Injecting as environment variables the properties file path '360-core-ems-web_master-bandit.properties'
+[EnvInject] - Variables injected successfully.
+Path To MSBuild.exe: msbuild.exe
+Executing the command cmd.exe /C " msbuild.exe /p:targetEnvironment=dev;ProductContentPath=${ProductContentPath};ShortVersionNumber=${ShortVersionNumber};ExtVersionNumber=${ExtVersionNumber} Deploy\Deploy.targets " && exit %%ERRORLEVEL%% from F:\jenkins_slave\workspace\abstract-bandit-deploy-v6
+[abstract-bandit-deploy-v6] $ cmd.exe /C " msbuild.exe /p:targetEnvironment=dev;ProductContentPath=${ProductContentPath};ShortVersionNumber=${ShortVersionNumber};ExtVersionNumber=${ExtVersionNumber} Deploy\Deploy.targets " && exit %%ERRORLEVEL%%
+Microsoft (R) Build Engine version 4.7.2053.0
+[Microsoft .NET Framework, version 4.0.30319.42000]
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Build started 7/29/2021 3:19:32 PM.
+Project "F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Deploy\Deploy.targets" on node 1 (default targets).
+PublishWebPackages:
+  PublishWebPackages [TargetMachinesGroup=botd-ams360dev1; ProjectNamesGroup=]
+  PublishWebPackages [TargetMachinesGroup=; ProjectNamesGroup=EMS.Services]
+  Overriding config file [SourceFiles="F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\EnvironmentFiles\EMS.Services\SetParameters.dev.xml"; DestinationFiles="F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\EMS.Services.SetParameters.xml"]
+  Copying file from "F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\EnvironmentFiles\EMS.Services\SetParameters.dev.xml" to "F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\EMS.Services.SetParameters.xml".
+  Adding PreDeploy_NewAndOldEMSSites script found at: ['F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\PreDeploy_NewAndOldEMSSites.ps1']
+  Adding PostDeploy script found at: ['F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\PostDeploy.ps1']
+  Copying file from "F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\PreDeploy_NewAndOldEMSSites.ps1" to "\\botd-ams360dev1\admin$\deploy\EMS.Services\Install\PreDeploy_NewAndOldEMSSites.ps1".
+  Copying file from "F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\PostDeploy.ps1" to "\\botd-ams360dev1\admin$\deploy\EMS.Services\Install\PostDeploy.ps1".
+  Publishing web project [F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\EMS.Services.deploy.cmd /Y  -allowUntrusted "-preSync:runCommand='powershell.exe -ExecutionPolicy ByPass -InputFormat None -NonInteractive -Command %windir%\deploy\EMS.Services\Install\PreDeploy_NewAndOldEMSSites.ps1',successReturnCodes=0,waitInterval=600000" "-postSync:runCommand='powershell.exe -ExecutionPolicy ByPass -InputFormat None -NonInteractive -Command %windir%\deploy\EMS.Services\Install\PostDeploy.ps1',successReturnCodes=0,waitInterval=600000" /M:botd-ams360dev1 ]
+  F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\EMS.Services.deploy.cmd /Y  -allowUntrusted "-preSync:runCommand='powershell.exe -ExecutionPolicy ByPass -InputFormat None -NonInteractive -Command %windir%\deploy\EMS.Services\Install\PreDeploy_NewAndOldEMSSites.ps1',successReturnCodes=0,waitInterval=600000" "-postSync:runCommand='powershell.exe -ExecutionPolicy ByPass -InputFormat None -NonInteractive -Command %windir%\deploy\EMS.Services\Install\PostDeploy.ps1',successReturnCodes=0,waitInterval=600000" /M:botd-ams360dev1 
+  SetParameters from:
+  "F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\EMS.Services.SetParameters.xml"
+  You can change IIS Application Name, Physical path, connectionString
+  or other deploy parameters in the above file.
+  -------------------------------------------------------
+   Start executing msdeploy.exe
+  -------------------------------------------------------
+   "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" -source:package='F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\EMS.Services.zip' -dest:auto,computerName="botd-ams360dev1",includeAcls="False" -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -skip:skipaction='Delete',objectname='filePath',absolutepath=".*\\bin\\EMS\.(?!.*original).+\.xml" -setParamFile:"F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Debug\_PublishedWebsites\EMS.Services_Package\EMS.Services.SetParameters.xml"  -allowUntrusted -preSync:runCommand='powershell.exe -ExecutionPolicy ByPass -InputFormat None -NonInteractive -Command C:\Windows\deploy\EMS.Services\Install\PreDeploy_NewAndOldEMSSites.ps1',successReturnCodes=0,waitInterval=600000 -postSync:runCommand='powershell.exe -ExecutionPolicy ByPass -InputFormat None -NonInteractive -Command C:\Windows\deploy\EMS.Services\Install\PostDeploy.ps1',successReturnCodes=0,waitInterval=600000
+  
+  Performing '-preSync'...
+  Info: Using ID '2936b247-f41e-464d-834a-c7d5ea40d8e4' for connections to the remote server.
+  Info: Updating runCommand (powershell.exe -ExecutionPolicy ByPass -InputFormat None -NonInteractive -Command C:\Windows\deploy\EMS.Services\Install\PreDeploy_NewAndOldEMSSites.ps1).
+  Info: PreSync script is executing on host BOTD-AMS360DEV1
+  Info: 
+  
+  Info: Setting up iis application 'ems'...
+  Info: 
+  
+  Info: 
+  
+  Info: Name             Application pool   Protocols    Physical Path                 
+  Info: 
+  
+  Info: ----             ----------------   ---------    -------------                 
+  Info: 
+  
+  Info: ems              ems                http         C:\EMS                        
+  Info: 
+  
+  Info: Setting up iis application 'EMS'...
+  Info: 
+  
+  Info: 
+  
+  Info: Name         : EMS
+  Info: 
+  
+  Info: ID           : 5
+  Info: 
+  
+  Info: State        : Stopped
+  Info: 
+  
+  Info: PhysicalPath : C:\EMS
+  Info: 
+  
+  Info: Bindings     : Microsoft.IIs.PowerShell.Framework.ConfigurationElement
+  Info: 
+  
+  Info: 
+  
+  Info: 
+  
+  Info: 
+  
+  Info: The process 'C:\Windows\system32\cmd.exe' (command line '') exited with code '0x0'.
+  Completed '-preSync'.
+  
+  Info: Using ID '214203a1-49ce-4793-b31d-95474cc3e408' for connections to the remote server.
+  Info: Adding ACL's for path (EMS)
+  Info: Adding ACL's for path (EMS)
+  Info: Using ID '3e3dfaa1-3b1c-468e-9974-dc9e1b6a14df' for connections to the remote server.
+  Info: Updating file (EMS\bin\EMS.Services.AMS360.EF.Data.dll).
+  Info: Updating file (EMS\bin\EMS.Services.AMS360.EF.Data.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Caching.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Caching.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Configuration.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Configuration.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.DbInfoModels.dll).
+  Info: Updating file (EMS\bin\EMS.Services.DbInfoModels.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Exceptions.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Exceptions.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.IVANS.Data.dll).
+  Info: Updating file (EMS\bin\EMS.Services.IVANS.Data.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Logging.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Logging.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Models.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Models.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Providers.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Providers.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Repositories.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Repositories.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Security.Common.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Security.Common.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Security.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Security.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Security.Providers.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Security.Providers.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Shared.EF.Data.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Shared.EF.Data.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.SiteDB.ADO.Data.dll).
+  Info: Updating file (EMS\bin\EMS.Services.SiteDB.ADO.Data.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.SiteDB.EF.Data.dll).
+  Info: Updating file (EMS\bin\EMS.Services.SiteDB.EF.Data.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Utilities.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Utilities.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.Views.dll).
+  Info: Updating file (EMS\bin\EMS.Services.Views.pdb).
+  Info: Updating file (EMS\bin\EMS.Services.xml).
+  Info: Updating file (EMS\bin\IQueryable.Extensions.dll).
+  Info: Updating file (EMS\bin\IQueryable.Extensions.pdb).
+  Info: Updating file (EMS\encryptedSettings.config).
+  Info: Updating file (EMS\web.config).
+  Info: Adding ACL's for path (EMS)
+  Info: Adding ACL's for path (EMS)
+  
+  Performing '-postSync'...
+  Info: Using ID '3c4323a2-c765-4c81-b9f1-55aee81eaef0' for connections to the remote server.
+  Info: Updating runCommand (powershell.exe -ExecutionPolicy ByPass -InputFormat None -NonInteractive -Command C:\Windows\deploy\EMS.Services\Install\PostDeploy.ps1).
+  Info: PostSync script is executing on host BOTD-AMS360DEV1
+  Info: 
+  
+  Info: Microsoft (R) ASP.NET RegIIS version 4.0.30319.0
+  
+  Info: Administration utility to install and uninstall ASP.NET on the local machine.
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  Info: Encrypting configuration section...
+  
+  Info: Succeeded!
+  
+  Info: Microsoft (R) ASP.NET RegIIS version 4.0.30319.0
+  
+  Info: Administration utility to install and uninstall ASP.NET on the local machine.
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  Info: Adding ACL for access to the RSA Key container...
+  
+  Info: Succeeded!
+  
+  Info: The process 'C:\Windows\system32\cmd.exe' (command line '') exited with code '0x0'.
+  Completed '-postSync'.
+  
+  Total changes: 47 (0 added, 0 deleted, 47 updated, 0 parameters changed, 17209767 bytes copied)
+Done Building Project "F:\jenkins_slave\workspace\abstract-bandit-deploy-v6\Deploy\Deploy.targets" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.59
+Recording fingerprints
+Finished: SUCCESS
